@@ -9,6 +9,7 @@ directory = os.path.abspath(os.path.dirname(os.path.dirname(os.path.abspath(__fi
 sys.path.append(directory)
 
 from jpo_patentapi_client import api_client
+from jpo_patentapi_client import api_client_error
 
 @pytest.fixture
 def user_password():
@@ -22,4 +23,12 @@ class TestJpoPatentapiClient:
     client = api_client.ApiClient(user_password['user'], user_password['password'], 'https://ip-data.jpo.go.jp/auth/token')
     
     assert (client.tokens['access_token'] != "") & (client.tokens['refresh_token'] != "")
+  
+  def test_unauth_illegal_username(self, user_password):
+    with pytest.raises(api_client_error.ApiClientError):
+      client = api_client.ApiClient('uso_user', user_password['password'], 'https://ip-data.jpo.go.jp/auth/token')
+      
+  def test_unauth_illegal_password(self, user_password):
+    with pytest.raises(api_client_error.ApiClientError):
+      client = api_client.ApiClient(user_password['user'], 'usopass', 'https://ip-data.jpo.go.jp/auth/token')
 
