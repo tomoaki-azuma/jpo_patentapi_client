@@ -4,8 +4,8 @@ class ApiClientError(Exception):
     error_message = """JPO API Access Error : http status code(%s), JPO API status code(%s)
     Error Meassage: %s
     Remain Access Count: %s
-    """ % (http_status.to_s(), api_status.to_s(), access_count.to_s())
+    """ % (str(http_status), str(api_status), message, str(access_count))
     
-    super.__init__(error_message)
+    return super().__init__(error_message)
 
     

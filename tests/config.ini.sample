@@ -1,0 +1,4 @@
+# config.iniにファイル名を書き換えて、user,passwordを記載してください
+[api_test]
+user = yourusername # 適宜書き換え
+password = yourpassword #適宜書き換え
