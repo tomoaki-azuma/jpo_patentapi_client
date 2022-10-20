@@ -10,6 +10,7 @@ from jpo_patentapi_client import api_client
 
 class TestJpoPatentapiClient:
   def test_one(self):
-    client = ApiClient('user', 'passwd', 'url')
-    assert 1 == 1
+    client = api_client.ApiClient('user', 'passwd', 'https://ip-data.jpo.go.jp')
+
+    assert 1 == 2
 
